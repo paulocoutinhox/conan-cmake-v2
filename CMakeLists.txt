@@ -14,11 +14,13 @@ target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 find_package(SQLite3 REQUIRED CONFIG)
 target_link_libraries(${PROJECT_NAME} PRIVATE ${SQLite3_LIBRARIES})
-target_include_directories(${PROJECT_NAME} PRIVATE ${SQLiteCpp_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PRIVATE ${SQLite3_INCLUDE_DIRS})
+target_compile_definitions(${PROJECT_NAME} PRIVATE ${SQLite3_DEFINITIONS})
 
 find_package(SQLiteCpp REQUIRED CONFIG)
 target_link_libraries(${PROJECT_NAME} PRIVATE ${SQLiteCpp_LIBRARIES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${SQLiteCpp_INCLUDE_DIRS})
+target_compile_definitions(${PROJECT_NAME} PRIVATE ${SQLiteCpp_DEFINITIONS})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "include/hello.h")
 
