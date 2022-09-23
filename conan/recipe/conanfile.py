@@ -90,12 +90,6 @@ class HelloConan(ConanFile):
         self.requires("sqlite3/3.39.3")
         self.requires("sqlitecpp/3.2.0")
 
-    def build_requirements(self):
-        if self.settings.os == "iOS":
-            self.tool_requires("darwin-toolchain/1.0.0@nativium/stable")
-        elif self.settings.os == "Android":
-            self.tool_requires("android-ndk/r24")
-
     def configure(self):
         if self.settings.os in ["iOS", "tvOS", "watchOS"]:
             self.options["sqlite3"].omit_load_extension = True
