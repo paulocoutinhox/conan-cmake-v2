@@ -1,0 +1,53 @@
+name: iOS
+
+on: [push]
+
+jobs:
+  build:
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { name: "macOS", os: macos-latest }
+        python-version: [3.7]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Upgrade PIP
+        run: python3 -m pip install --upgrade pip setuptools wheel
+
+      - name: Display Python Version
+        run: python3 --version
+
+      - name: Display PIP Version
+        run: python3 -m pip --version
+
+      - name: Install Brew Packages
+        run: brew install tree
+
+      - name: Install CMake
+        uses: jwlawson/actions-setup-cmake@v1.8
+        with:
+          cmake-version: "3.20.0"
+
+      - name: Install Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+        with:
+          version: "1.10.0"
+
+      - name: Install Python Dependencies
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Build
+        run: make ios
+
+      - name: Tree
+        run: make tree
