@@ -9,15 +9,15 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "$<0:>${CMAKE_BINARY_DIR}/bin") # .exe and .d
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "$<0:>${CMAKE_BINARY_DIR}/lib") # .so and .dylib
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "$<0:>${CMAKE_BINARY_DIR}/lib") # .lib and .a
 
-find_package(SQLite3 REQUIRED CONFIG)
-find_package(SQLiteCpp REQUIRED CONFIG)
-
 add_library(${PROJECT_NAME} src/hello.cpp)
-
-target_link_libraries(${PROJECT_NAME} PRIVATE SQLite3)
-target_link_libraries(${PROJECT_NAME} PRIVATE SQLiteCpp)
-
 target_include_directories(${PROJECT_NAME} PRIVATE include)
+
+find_package(SQLite3 REQUIRED CONFIG)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${SQLite3_LIBRARIES})
+target_include_directories(${PROJECT_NAME} PRIVATE ${SQLiteCpp_INCLUDE_DIRS})
+
+find_package(SQLiteCpp REQUIRED CONFIG)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${SQLiteCpp_LIBRARIES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${SQLiteCpp_INCLUDE_DIRS})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "include/hello.h")
