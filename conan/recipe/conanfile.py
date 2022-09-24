@@ -1,5 +1,6 @@
 import os
 
+from conan.tools.apple import is_apple_os
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain
 from conan.tools.files import copy
 
@@ -68,6 +69,7 @@ class HelloConan(ConanFile):
         )
 
     def generate(self):
+        # toolchain
         tc = CMakeToolchain(self)
         tc.generate()
 

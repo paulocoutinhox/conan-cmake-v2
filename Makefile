@@ -48,7 +48,7 @@ ios:        ## Setup And Build For iOS.
 	mkdir -p build/os-system/os-arch/conan
 
 	cd build/os-system/os-arch/conan && \
-		conan install ../../../../conan/recipe/conanfile.py -pr:b=default -pr:h=../../../../conan/profiles/ios_profile --build=missing --update -s:h build_type=Debug
+		conan install ../../../../conan/recipe/conanfile.py -pr:b=default -pr:h=../../../../conan/profiles/ios_profile --build=missing --update -s:h build_type=Debug -c tools.cmake.cmaketoolchain:generator="Xcode"
 
 	@make tree
 	@make build
