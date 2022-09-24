@@ -1,6 +1,10 @@
 # use this to generate xcode project: -c tools.cmake.cmaketoolchain:generator=Xcode
 # use this to generate xcode project: cmake -S . -B build/os-system/os-arch/target -G Xcode [...]
 
+# build can be direct with cmake:
+#     cmake -S . -B build/os-system/os-arch/target -DCMAKE_TOOLCHAIN_FILE=../conan/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Debug
+#     cmake --build build/os-system/os-arch/target
+
 .PHONY: help
 help:       ## Show The Help.
 	@echo "Usage: make <target>"
@@ -21,8 +25,8 @@ tree:       ## List Files With Tree.
 .PHONY: build
 build:      ## Build Already Generated CMake Project.
 	rm -rf build/os-system/os-arch/target
-	cmake -S . -B build/os-system/os-arch/target -DCMAKE_TOOLCHAIN_FILE=../conan/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Debug
-	cmake --build build/os-system/os-arch/target
+	cd build/os-system/os-arch/conan && \
+		conan build ../../../../conan/recipe/conanfile.py
 
 .PHONY: desktop
 desktop:    ## Setup And Build For Desktop.
