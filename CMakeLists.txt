@@ -10,6 +10,15 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "$<0:>${CMAKE_BINARY_DIR}/bin") # .exe and .d
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "$<0:>${CMAKE_BINARY_DIR}/lib") # .so and .dylib
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "$<0:>${CMAKE_BINARY_DIR}/lib") # .lib and .a
 
+# test variables
+message(STATUS "Variable Before: MYVAR_FROM_CONANFILE_1 = ${MYVAR_FROM_CONANFILE_1}")
+set(MYVAR_FROM_CONANFILE_1 "default-value" CACHE STRING "Variable From Conanfile")
+message(STATUS "Variable After: MYVAR_FROM_CONANFILE_1 = ${MYVAR_FROM_CONANFILE_1}")
+
+message(STATUS "Variable Before: MYVAR_FROM_CONANFILE_2 = ${MYVAR_FROM_CONANFILE_2}")
+set(MYVAR_FROM_CONANFILE_2 "default-value" CACHE STRING "Variable From Conanfile")
+message(STATUS "Variable After: MYVAR_FROM_CONANFILE_2 = ${MYVAR_FROM_CONANFILE_2}")
+
 # library
 add_library(${PROJECT_NAME} src/hello.cpp)
 target_include_directories(${PROJECT_NAME} PRIVATE include)

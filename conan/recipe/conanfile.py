@@ -78,6 +78,8 @@ class HelloConan(ConanFile):
 
         # toolchain
         tc = CMakeToolchain(self, generator=generator)
+        tc.variables["MYVAR_FROM_CONANFILE_1"] = "VALUE-123"
+        tc.cache_variables["MYVAR_FROM_CONANFILE_2"] = "VALUE-123"
         tc.generate()
 
         deps = CMakeDeps(self)
