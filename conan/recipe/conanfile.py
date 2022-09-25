@@ -1,5 +1,6 @@
 import os
 
+from conan.tools.apple import is_apple_os
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain
 from conan.tools.files import copy
 
@@ -68,8 +69,15 @@ class HelloConan(ConanFile):
         )
 
     def generate(self):
+        # generator
+        generator = None
+
+        if is_apple_os(self):
+            print("INFO: Using Xcode Generator")
+            generator = "Xcode"
+
         # toolchain
-        tc = CMakeToolchain(self)
+        tc = CMakeToolchain(self, generator=generator)
         tc.generate()
 
         deps = CMakeDeps(self)
@@ -90,6 +98,7 @@ class HelloConan(ConanFile):
     def requirements(self):
         self.requires("sqlite3/3.39.3")
         self.requires("sqlitecpp/3.2.0")
+        self.requires("bzip2/1.0.8")
 
     def configure(self):
         if self.settings.os in ["iOS", "tvOS", "watchOS"]:
