@@ -19,6 +19,11 @@ message(STATUS "Variable Before: MYVAR_FROM_CONANFILE_2 = ${MYVAR_FROM_CONANFILE
 set(MYVAR_FROM_CONANFILE_2 "default-value" CACHE STRING "Variable From Conanfile")
 message(STATUS "Variable After: MYVAR_FROM_CONANFILE_2 = ${MYVAR_FROM_CONANFILE_2}")
 
+# test env variables
+message(STATUS "Variable BITCODE: ${CMAKE_XCODE_ATTRIBUTE_ENABLE_BITCODE}")
+message(STATUS "Variable ARC: ${CMAKE_XCODE_ATTRIBUTE_ENABLE_ARC}")
+message(STATUS "Variable VISIBILITY: ${CMAKE_XCODE_ATTRIBUTE_ENABLE_VISIBILITY}")
+
 # library
 add_library(${PROJECT_NAME} src/hello.cpp)
 target_include_directories(${PROJECT_NAME} PRIVATE include)
@@ -34,8 +39,3 @@ target_link_libraries(${PROJECT_NAME} PRIVATE SQLiteCpp)
 
 # install
 install(TARGETS ${PROJECT_NAME})
-
-# show debug
-message(STATUS "BITCODE: ${CMAKE_XCODE_ATTRIBUTE_ENABLE_BITCODE}")
-message(STATUS "ARC: ${CMAKE_XCODE_ATTRIBUTE_ENABLE_ARC}")
-message(STATUS "VISIBILITY: ${CMAKE_XCODE_ATTRIBUTE_ENABLE_VISIBILITY}")
