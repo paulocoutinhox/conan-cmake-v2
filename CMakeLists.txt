@@ -25,9 +25,20 @@ message(STATUS "Variable ARC: ${CMAKE_XCODE_ATTRIBUTE_ENABLE_ARC}")
 message(STATUS "Variable VISIBILITY: ${CMAKE_XCODE_ATTRIBUTE_ENABLE_VISIBILITY}")
 
 # library
-add_library(${PROJECT_NAME} src/hello.cpp)
+if (APPLE)
+    set(SRC_FILES "src/hello.cpp" "src/hello-objc.m")
+    set(HRD_FILES "include/hello.h" "include/hello-objc.h")
+else()
+    set(SRC_FILES "src/hello.cpp")
+    set(HRD_FILES "include/hello.h")
+endif()
+
+add_library(${PROJECT_NAME} ${SRC_FILES})
 target_include_directories(${PROJECT_NAME} PRIVATE include)
-set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "include/hello.h")
+
+# public headers
+set(PUBLIC_HEADERS ${HRD_FILES})
+set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADERS}")
 
 # sqlite3
 find_package(SQLite3 CONFIG REQUIRED)

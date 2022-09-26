@@ -23,9 +23,6 @@ class HelloConan(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
 
-    # Generators
-    generators = "CMakeToolchain", "CMakeDeps"
-
     def config_options(self):
         if self.settings.os == "Windows":
             del self.options.fPIC
