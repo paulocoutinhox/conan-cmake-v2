@@ -65,18 +65,22 @@ This is the project structure when run `make tree`:
 │   │   └── test_package
 │   │       ├── CMakeLists.txt
 │   │       ├── conanfile.py
-│   │       └── hello.c
+│   │       └── src
+│   │           └── example.cpp
 │   ├── profiles
 │   │   ├── android_profile
 │   │   ├── catalyst_profile
 │   │   ├── ios_profile
+│   │   ├── ios_sim_profile
 │   │   └── wasm_profile
 │   └── recipe
 │       └── conanfile.py
 ├── include
+│   ├── hello-objc.h
 │   └── hello.h
 ├── requirements.txt
 ├── src
+│   ├── hello-objc.m
 │   └── hello.cpp
 └── test_package
     ├── CMakeLists.txt
@@ -84,5 +88,5 @@ This is the project structure when run `make tree`:
     └── src
         └── example.cpp
 
-9 directories, 20 files
+10 directories, 23 files
 ```
