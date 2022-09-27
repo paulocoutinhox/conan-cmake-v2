@@ -9,6 +9,7 @@ This is a test project to understand how Conan V2 works with a complex layout.
     <a href="https://github.com/paulocoutinhox/conan-cmake-v2/actions/workflows/android.yml"><img src="https://github.com/paulocoutinhox/conan-cmake-v2/actions/workflows/android.yml/badge.svg"></a>    
     <a href="https://github.com/paulocoutinhox/conan-cmake-v2/actions/workflows/wasm.yml"><img src="https://github.com/paulocoutinhox/conan-cmake-v2/actions/workflows/wasm.yml/badge.svg"></a>
     <a href="https://github.com/paulocoutinhox/conan-cmake-v2/actions/workflows/catalyst.yml"><img src="https://github.com/paulocoutinhox/conan-cmake-v2/actions/workflows/catalyst.yml/badge.svg"></a>    
+    <a href="https://github.com/paulocoutinhox/conan-cmake-v2/actions/workflows/ios-sim.yml"><img src="https://github.com/paulocoutinhox/conan-cmake-v2/actions/workflows/ios-sim.yml/badge.svg"></a>    
 </p>
 
 ## How to build for generic desktop
@@ -40,6 +41,12 @@ Execute on terminal:
 Execute on terminal:
 
 `make catalyst`
+
+## How to build for iOS Simulator
+
+Execute on terminal:
+
+`make ios-sim`
 
 ## Tree
 

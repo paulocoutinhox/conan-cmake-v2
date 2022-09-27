@@ -88,3 +88,17 @@ catalyst:   ## Setup And Build For Catalyst.
 
 	@make tree
 	@make build
+
+.PHONY: ios-sim
+ios-sim:    ## Setup And Build For iOS Simulator.
+	cd conan/darwin-toolchain && \
+		conan create . nativium/stable
+
+	rm -rf build
+	mkdir -p build/os-system/os-arch/conan
+
+	cd build/os-system/os-arch/conan && \
+		conan install ../../../../conan/recipe/conanfile.py -pr:b=default -pr:h=../../../../conan/profiles/ios_sim_profile --build=missing --update -s:h build_type=Debug
+
+	@make tree
+	@make build
