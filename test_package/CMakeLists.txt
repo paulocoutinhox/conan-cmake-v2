@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(PackageTest CXX)
+project(PackageTest C CXX)
 
 find_package(hello CONFIG REQUIRED)
 
